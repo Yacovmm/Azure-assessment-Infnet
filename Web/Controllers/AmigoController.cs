@@ -76,18 +76,32 @@ namespace Web.Controllers
         // GET: Amigo/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            HttpResponseMessage response = client.GetAsync($"/api/amigos/{id}").Result;
+            AmigoDto amigo = response.Content.ReadAsAsync<AmigoDto>().Result;
+            if (amigo == null)
+                return HttpNotFound();
+
+            return View(amigo);
         }
 
         // POST: Amigo/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, AmigoDto amigo)
         {
             try
             {
-                // TODO: Add update logic here
+                HttpResponseMessage response = client.PutAsJsonAsync<AmigoDto>($"/api/amigos/{id}", amigo).Result;
+                if (response.StatusCode == HttpStatusCode.NoContent)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Error while editing the note";
+                    return View();
+                }
 
-                return RedirectToAction("Index");
+
             }
             catch
             {
@@ -98,23 +112,39 @@ namespace Web.Controllers
         // GET: Amigo/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            HttpResponseMessage response = client.GetAsync($"/api/amigos/{id}").Result;
+            AmigoDto amigo = response.Content.ReadAsAsync<AmigoDto>().Result;
+            if (amigo == null)
+                return HttpNotFound();
+
+            return View(amigo);
         }
 
         // POST: Amigo/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, AmigoDto amigo)
         {
             try
             {
-                // TODO: Add delete logic here
+                HttpResponseMessage response = client.DeleteAsync($"/api/amigos/{id}").Result;
+                if (response.StatusCode == HttpStatusCode.NoContent)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Error while editing the note";
+                    return View();
+                }
 
-                return RedirectToAction("Index");
             }
             catch
             {
                 return View();
             }
+
+
+
         }
     }
 }
