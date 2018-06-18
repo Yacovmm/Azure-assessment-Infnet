@@ -1,0 +1,43 @@
+﻿@model Web.ViewModels.AmigoViewModel
+
+@{
+    ViewBag.Title = "title";
+    
+}
+
+<h2>@Model.Title</h2>
+
+@Html.ValidationSummary(true, "Please fix the following errors")
+@using (Html.BeginForm("Save", "Amigo"))
+{
+    <div class="form-group">
+        @Html.LabelFor(x => x.Amigo.Name)
+        @Html.TextBoxFor(x => x.Amigo.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Amigo.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Amigo.Email)
+        @Html.TextBoxFor(x => x.Amigo.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Amigo.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Amigo.Birthday)
+        @Html.TextBoxFor(x => x.Amigo.Birthday, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Amigo.Birthday)
+    </div>
+
+@*    <div class="form-group">*@
+@*        @Html.LabelFor(x => x.GenreId)*@
+@*        @Html.DropDownListFor(x => x.GenreId, new SelectList(Model.Genre, "Id", "Name"), "Select Genre Type ", new { @class = "form-control" })*@
+@*        @Html.ValidationMessageFor(x => x.GenreId)*@
+@*    </div>*@
+    
+    
+
+
+    @Html.HiddenFor(x => x.Amigo.Id)
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary"> Save </button>
+}
