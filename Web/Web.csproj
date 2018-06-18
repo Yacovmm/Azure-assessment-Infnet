@@ -195,6 +195,7 @@
     <Content Include="Views\Amigo\AmigoForm.cshtml" />
     <Content Include="Views\Amigo\Index.cshtml" />
     <Content Include="Views\Amigo\Details.cshtml" />
+    <Content Include="Views\Amigo\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

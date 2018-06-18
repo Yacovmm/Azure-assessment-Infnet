@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Web.Mvc;
@@ -50,13 +51,21 @@ namespace Web.Controllers
 
         // POST: Amigo/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(AmigoDto amigoDto)
         {
             try
             {
-                // TODO: Add insert logic here
+                HttpResponseMessage response = client.PostAsJsonAsync<AmigoDto>("/api/amigos", amigoDto).Result;
+                if (response.StatusCode == HttpStatusCode.Created)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Error while creating";
+                    return View();
+                }
 
-                return RedirectToAction("Index");
             }
             catch
             {
