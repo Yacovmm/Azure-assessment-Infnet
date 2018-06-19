@@ -218,8 +218,13 @@
     <Compile Include="Migrations\201806172102159_AmigoEdit.Designer.cs">
       <DependentUpon>201806172102159_AmigoEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806181746496_AmigoEstado.cs" />
+    <Compile Include="Migrations\201806181746496_AmigoEstado.Designer.cs">
+      <DependentUpon>201806181746496_AmigoEstado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Amigo.cs" />
+    <Compile Include="Models\Dto\AmigoDto.cs" />
     <Compile Include="Models\Estado.cs" />
     <Compile Include="Models\Pais.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -301,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806172102159_AmigoEdit.resx">
       <DependentUpon>201806172102159_AmigoEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806181746496_AmigoEstado.resx">
+      <DependentUpon>201806181746496_AmigoEstado.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
